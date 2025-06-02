@@ -13,7 +13,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(to bottom, #ffffffc7, #424C96), url(./background.jpg);
+    background: linear-gradient(to bottom, #c6c8d1, #424C96), url(./background.jpg);
     overflow: hidden;
     font-family: "Inter", serif;
 }
@@ -1052,7 +1052,7 @@ span{
 }
 .boxMail .boxMail-container:hover{
     transform: rotate(-5deg);
-    filter: drop-shadow(0 0 10px red);
+    filter: drop-shadow(0 0 10px #424C96);
 }
 .boxMail .boxMail-container:hover .card1{
     transform: translate(-187px, -250px) rotateY(-140deg);
@@ -1071,7 +1071,7 @@ span{
     position: absolute;
     width: 50%;
     height: 100%;
-    background: linear-gradient(to right, rgb(237 32 32), rgb(255 91 91) 63%);
+    background: linear-gradient(to right, #424C96, #a6addb 63%);
     color: white;
     display: flex;
     justify-content: center;
@@ -1116,7 +1116,7 @@ span{
 }
 .boxMail .boxMail-container .card2{
     position: relative;
-    width: 50%;
+    width: 70%;
     height: 100%;
     background: linear-gradient(to right, #e0e0e0, #ffffff 30%);
     -webkit-transform-style: preserve-3d;

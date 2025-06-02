@@ -4,14 +4,98 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="Happy Birthday | Aoudumber Bade">
+    <meta name="title" content="Happy Graduation | Aoudumber Bade">
     <meta name="github" content="https://github.com/Aoudumber-Bade">
     <link rel="stylesheet" href="style.css">
     <!-- <link rel="website icon" type="png" href="image/heart.png"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Have a Happy Birthday!</title>
+    <title>Congratulations on Your Graduation!</title>
+    <style>
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .modal-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .modal-container h2 {
+            color: #424C96;
+            margin-bottom: 20px;
+        }
+        
+        .modal-container input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #424C96;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .modal-container button {
+            background-color: #424C96;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .modal-container button:hover {
+            background-color: #424C96;
+        }
+        
+        /* Heart animation */
+        span {
+            position: absolute;
+            background: url('heart.png');
+            background-size: cover;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            animation: animate 4s linear infinite;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: translate(-50%, -50%);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -1000%);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Name Input Modal -->
+    <div class="modal-overlay" id="nameModal">
+        <div class="modal-container">
+            <h2>Who is graduating?</h2>
+            <input type="text" id="graduateName" placeholder="Enter graduate's name">
+            <button id="submitName">Create Graduation Card</button>
+        </div>
+    </div>
+
     <div class="container">
         <div class="boxcontainer">
             <div class="image">
@@ -79,20 +163,21 @@
                     <div class="userImg">
                         <img src="truongan.png" alt="">
                     </div>
-                    <h3>Happy Birthday</h3>
+                    <h3 id="card-title">Congratulations!</h3>
                     <div class="imageCute">
                         <img src="cute1.png" alt="">
                     </div>
                 </div>
                 <div class="card2">
                     <div class="card2-content">
-                        <h3>To You!</h3>
-                        <h2>
-                            Oh my goodness! Today is a very special day for a very special person.
-                            I wish you a birthday filled with meaning, joy, and happiness alongside your family and friends.
-                            May your new year be full of endless cheer and delight, making you shine brighter than ever.
-                            I hope you excel in your studies while taking good care of your health, and that you soon find the love you desire.
-                            Finally, I wish you the happiest birthday ever. May all the best things come your way!
+                        <h3 id="recipient-name">To Our Graduate!</h3>
+                        <h2 id="graduation-message">
+                            What an incredible achievement! Today marks the culmination of years of hard work, dedication, and perseverance. 
+                            You've overcome challenges, pushed through obstacles, and now you stand at this magnificent milestone. 
+                            As you move forward to new adventures, remember that this is just the beginning of your journey. 
+                            The knowledge and experiences you've gained will be the foundation for your future success. 
+                            May you continue to reach for the stars and achieve all your dreams. 
+                            Congratulations on this well-deserved success!
                         </h2>
                         <div class="imageCute2">
                             <img src="cute2.png" alt="">
@@ -103,13 +188,33 @@
         </div>
     </div>
 
-    
-	<div id="copy">
-		<p class="text-center text-white text-sm">OG Creator <a
-			href="https://www.instagram.com/aoudumber.dev/reels/#">@aoudumber.dev</a></p>
-	  </div>
-</body>
     <script>
+        // Show name modal on load
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('nameModal').style.display = 'flex';
+        });
+
+        // Handle name submission
+        document.getElementById('submitName').addEventListener('click', function() {
+            const name = document.getElementById('graduateName').value.trim();
+            if (name) {
+                // Personalize the card
+                document.getElementById('card-title').textContent = `Congratulations ${name}!`;
+                document.getElementById('recipient-name').textContent = `To Our Amazing ${name}!`;
+                
+                // Update the message with the name
+                const message = document.getElementById('graduation-message');
+                message.innerHTML = message.innerHTML.replace(/you/gi, name)
+                                                   .replace(/your/gi, `${name}'s`);
+                
+                // Hide the modal
+                document.getElementById('nameModal').style.display = 'none';
+            } else {
+                alert('Please enter a name');
+            }
+        });
+
+        // Heart animation
         document.addEventListener('mousemove', function(e){
             let body = document.querySelector('body');
             let heart = document.createElement('span');
@@ -132,6 +237,7 @@
             },1000)
         })
 
+        // Mail box functionality
         let mailBox = document.querySelector('.mail')
         let boxmail = document.querySelector('.boxMail')
         var close = document.querySelector('.fa-xmark')
@@ -144,4 +250,5 @@
             boxmail.classList.remove('active')
         })
     </script>
+</body>
 </html>
